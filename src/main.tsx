@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { StrictMode } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { store } from './app/store.ts';
+import { store } from './app/Store/store.ts';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
