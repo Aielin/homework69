@@ -2,6 +2,7 @@ import SearchBar from './containers/SearchBar/SearchBar.tsx';
 import ShowList from './containers/ShowList/ShowList.tsx';
 import { Route, Routes } from 'react-router-dom';
 import ShowDetails from './containers/ShowDetails/ShowDetails.tsx';
+import './App.css';
 
 const App = () => {
   return (
