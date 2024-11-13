@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { showsReducer } from './showsSlice.ts';
+import { showDetailsReducer } from './showDetailsSlice.ts';
 
 export const store = configureStore({
   reducer: {
     shows: showsReducer,
+    showDetails: showDetailsReducer,
   },
 });
 

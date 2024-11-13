@@ -9,11 +9,13 @@ interface Show {
 interface ShowsState {
   items: Show[];
   loading: boolean;
+  error: string | null;
 }
 
 const initialState: ShowsState = {
   items: [],
   loading: false,
+  error: null,
 };
 
 export const fetchShows = createAsyncThunk<Show[], string>(
@@ -29,16 +31,19 @@ const showsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchShows.pending, (state) => {
-      state.loading = true;
-    });
-    builder.addCase(fetchShows.fulfilled, (state, { payload }) => {
-      state.items = payload;
-      state.loading = false;
-    });
-    builder.addCase(fetchShows.rejected, (state) => {
-      state.loading = false;
-    });
+    builder
+      .addCase(fetchShows.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchShows.fulfilled, (state, { payload }) => {
+        state.items = payload;
+        state.loading = false;
+      })
+      .addCase(fetchShows.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message || "Failed to load shows.";
+      });
   },
 });
 
